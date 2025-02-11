@@ -40,11 +40,25 @@
             background: url('./egg.svg') no-repeat center center;
             background-size: cover;
         }
+
+        #counter {
+            z-index: 2;
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            font-size: 2.5rem;
+            background-color: rgba(175, 175, 175, 0.5);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+        }
     </style>
 </head>
 
 <body>
+    <div id="counter">000</div>
     <script>
+        let counter = 0;
+
         // 创建母鸡
         function createHen(pos) {
             const hen = document.createElement('div');
@@ -62,7 +76,7 @@
                 const y = Math.random() * (window.innerHeight - 100);
                 hen.style.left = `${x}px`;
                 hen.style.top = `${y}px`;
-                if (Math.random() < 0.3) {
+                if (Math.random() < 0.8 / (counter + 1) + 0.2) {
                     setTimeout(() => layEggs(hen), 1200);
                 }
             }, 2000);
@@ -82,6 +96,8 @@
         function hatchEgg(egg) {
             egg.remove();
             createHen({ x: egg.style.left, y: egg.style.top });
+            counter++;
+            document.getElementById('counter').innerText = counter.toString().padStart(3, '0');
         }
 
         // 初始化第一只母鸡

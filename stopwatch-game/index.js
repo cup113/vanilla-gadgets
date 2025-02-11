@@ -22,10 +22,12 @@ const grades = [
   { diff: 0.02, grade: "SS", color: "yellow" },
   { diff: 0.015, grade: "SS+", color: "yellow" },
   { diff: 0.01, grade: "SSS", color: "yellow" },
-  { diff: 0.005, grade: "U", color: "darkpink" },
-  { diff: 0.001, grade: "U+", color: "darkpink" },
-  { diff: 0.0001, grade: "U++", color: "darkpink" },
+  { diff: 0.005, grade: "U", color: "deeppink" },
+  { diff: 0.002, grade: "U+", color: "deeppink" },
+  { diff: 0.0005, grade: "U++", color: "deeppink" },
 ].reverse();
+
+const historyRecord = JSON.parse(localStorage.getItem("SG_history") ?? "[]");
 
 function format_time(totalMs) {
   const s = totalMs / 1000;
@@ -48,7 +50,27 @@ function start() {
   handle = requestAnimationFrame(setTimestamp);
 }
 
+function gen_history_element(grade) {
+  const el = document.createElement("div");
+  el.textContent = grade;
+  el.style.color = grades.find(g => g.grade === grade).color;
+  return el;
+}
+
+function add_history(grade) {
+  historyRecord.push({ grade })
+  if (historyRecord.length > 10) {
+    historyRecord.shift();
+    document.querySelector("#history").removeChild(document.querySelector("#history").firstChild);
+  }
+  localStorage.setItem("SG_history", JSON.stringify(historyRecord));
+  document.querySelector("#history").appendChild(gen_history_element(grade));
+}
+
 function stop() {
+  if (!running) {
+    return;
+  }
   running = false;
   cancelAnimationFrame(handle);
   setTimestamp(performance.now());
@@ -60,6 +82,7 @@ function stop() {
   document.querySelector("#grade").textContent = grade.grade;
   document.querySelector("#diff").style.color = grade.color;
   document.querySelector("#grade").style.color = grade.color;
+  add_history(grade.grade);
 }
 
 function reset() {
@@ -82,4 +105,7 @@ window.onload = () => {
     document.querySelector(`#${attachment.id}`).addEventListener('click', attachment.func);
   });
   document.querySelector("#target").textContent = format_time(target);
+  historyRecord.forEach(grade => {
+    document.querySelector("#history").appendChild(gen_history_element(grade.grade));
+  });
 }

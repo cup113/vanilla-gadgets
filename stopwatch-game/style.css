@@ -44,3 +44,17 @@ h1 {
     font-weight: bold;
     font-family: numberonly, monospace, sans-serif;
 }
+
+#history {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#history>div {
+    font-weight: bold;
+    background-color: darkkhaki;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1rem;
+}
