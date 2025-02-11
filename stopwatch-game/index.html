@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <script src="./index.js"></script>
+  <title>Stopwatch Game</title>
+</head>
+
+<body>
+  <h1>掐秒表</h1>
+  <div class="container">
+    <p>你的目标是：<span id="target">00.0000</span></p>
+    <p id="timer">00.0000</p>
+    <div class="buttons">
+      <button id="start" class="operate-button">开始</button>
+      <button id="stop" class="operate-button">停止</button>
+      <button id="reset" class="operate-button">重置</button>
+    </div>
+    <div id="result" style="visibility: hidden;">
+      <div><span id="diff"></span>s</div>
+      <div><span id="grade"></span> Level</div>
+    </div>
+  </div>
+</body>
+
+</html>

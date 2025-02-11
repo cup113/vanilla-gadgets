@@ -1,0 +1,46 @@
+body {
+    background-color: khaki;
+    padding: 0.5rem 1rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+}
+
+#timer {
+    font-size: 3rem;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.operate-button {
+    font-size: 1.5rem;
+    padding: 0.25rem 0.5rem;
+    background-color: skyblue;
+    border-radius: 0.5rem;
+}
+
+#result {
+    margin: 2rem auto;
+    width: 16rem;
+    font-size: 1.25rem;
+    background-color: darkkhaki;
+    border-radius: 1rem;
+    color: white;
+    padding: 1rem 1rem;
+}
+
+#diff,
+#grade {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: numberonly, monospace, sans-serif;
+}
