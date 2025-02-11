@@ -27,7 +27,7 @@
         .hen {
             width: 100px;
             height: 100px;
-            background: url('./hen.svg') no-repeat center center;
+            background: url('./hen.png') no-repeat center center;
             background-size: cover;
             transition-property: top, left;
             transition-duration: 1s;
@@ -46,11 +46,11 @@
 <body>
     <script>
         // 创建母鸡
-        function createHen() {
+        function createHen(pos) {
             const hen = document.createElement('div');
             hen.classList.add('hen');
-            hen.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
-            hen.style.top = `${Math.random() * (window.innerHeight - 50)}px`;
+            hen.style.left = pos?.x ?? `${Math.random() * (window.innerWidth - 100)}px`;
+            hen.style.top = pos?.y ?? `${Math.random() * (window.innerHeight - 100)}px`;
             document.body.appendChild(hen);
             moveHen(hen);
         }
@@ -72,7 +72,7 @@
         function layEggs(hen) {
             const egg = document.createElement('div');
             egg.classList.add('egg');
-            egg.style.left = `${parseFloat(hen.style.left) + 60}px`;
+            egg.style.left = `${parseFloat(hen.style.left)}px`;
             egg.style.top = `${parseFloat(hen.style.top) + 70}px`;
             document.body.appendChild(egg);
             egg.onclick = () => hatchEgg(egg);
@@ -81,7 +81,7 @@
         // 蛋孵化成新母鸡
         function hatchEgg(egg) {
             egg.remove();
-            createHen();
+            createHen({ x: egg.style.left, y: egg.style.top });
         }
 
         // 初始化第一只母鸡
