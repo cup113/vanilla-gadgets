@@ -3,6 +3,7 @@ let nowTimestamp = performance.now();
 let running = false;
 let handle = 0;
 const target = 1000 * 5;
+const maxHistoryItems = 15;
 
 const grades = [
   { diff: 2.00, grade: "E", color: "gray" },
@@ -58,13 +59,14 @@ function gen_history_element(grade) {
 }
 
 function add_history(grade) {
-  historyRecord.push({ grade })
-  if (historyRecord.length > 10) {
+  historyRecord.push({ grade });
+  const elHistory = document.querySelector("#history");
+  if (historyRecord.length > maxHistoryItems) {
     historyRecord.shift();
-    document.querySelector("#history").removeChild(document.querySelector("#history").firstChild);
+    elHistory.removeChild(elHistory.lastChild);
   }
   localStorage.setItem("SG_history", JSON.stringify(historyRecord));
-  document.querySelector("#history").appendChild(gen_history_element(grade));
+  elHistory.insertBefore(gen_history_element(grade), elHistory.firstChild);
 }
 
 function stop() {
@@ -106,6 +108,7 @@ window.onload = () => {
   });
   document.querySelector("#target").textContent = format_time(target);
   historyRecord.forEach(grade => {
-    document.querySelector("#history").appendChild(gen_history_element(grade.grade));
+    const elHistory = document.querySelector("#history");
+    elHistory.insertBefore(gen_history_element(grade.grade), elHistory.firstChild);
   });
 }
