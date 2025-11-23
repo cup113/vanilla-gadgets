@@ -42,7 +42,7 @@ h1 {
 #grade {
     font-size: 2rem;
     font-weight: bold;
-    font-family: numberonly, monospace, sans-serif;
+    font-family: numberonly, consolas, sans-serif;
 }
 
 #history {
@@ -54,9 +54,19 @@ h1 {
     gap: 0.75rem;
 }
 
-#history>div {
+#history > div {
     font-weight: bold;
     background-color: darkkhaki;
     padding: 0.25rem 0.5rem;
     border-radius: 1rem;
+}
+
+#comprehensive-grade {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: numberonly, consolas, sans-serif;
+    background-color: darkkhaki;
+    margin: 1rem auto;
+    width: 10rem;
+    padding: 0.5rem;
 }
