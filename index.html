@@ -1,56 +1,369 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <title>Vanilla Gadgets</title>
-    <style>
-        h1 {
-            text-align: center;
-            font-size: 1.5rem;
-        }
+        <!-- 基本SEO标签 -->
+        <meta
+            name="description"
+            content="Vanilla Gadgets - 一个使用纯原生HTML、CSS和JavaScript构建的有趣小工具集合。包含爱心跳动、掐秒表游戏和快乐母鸡等互动项目。"
+        />
+        <meta
+            name="keywords"
+            content="HTML, CSS, JavaScript, 小工具, 小游戏, 原生开发, 前端项目, 爱心, 秒表, 母鸡, Vanilla JS"
+        />
+        <meta name="author" content="cup11" />
 
-        .cards {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-        }
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://example.com/vanilla-gadgets/"
+        />
+        <meta
+            property="og:title"
+            content="Vanilla Gadgets - 原生HTML+CSS+JS小工具集合"
+        />
+        <meta
+            property="og:description"
+            content="一个使用纯原生HTML、CSS和JavaScript构建的有趣小工具集合。包含爱心跳动、掐秒表游戏和快乐母鸡等互动项目。"
+        />
+        <meta
+            property="og:image"
+            content="https://example.com/vanilla-gadgets/stopwatch-game/screenshot.png"
+        />
 
-        .card {
-            padding: 0.5rem 1rem;
-            box-shadow: 0.5rem 0.5rem 0.5rem rgba(52, 52, 167, 0.2);
-            border-radius: 1rem;
-            background-color: blue;
-        }
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+            property="twitter:url"
+            content="https://example.com/vanilla-gadgets/"
+        />
+        <meta
+            property="twitter:title"
+            content="Vanilla Gadgets - 原生HTML+CSS+JS小工具集合"
+        />
+        <meta
+            property="twitter:description"
+            content="一个使用纯原生HTML、CSS和JavaScript构建的有趣小工具集合。包含爱心跳动、掐秒表游戏和快乐母鸡等互动项目。"
+        />
+        <meta
+            property="twitter:image"
+            content="https://example.com/vanilla-gadgets/stopwatch-game/screenshot.png"
+        />
 
-        .card>a {
-            text-decoration: none;
-            color: white;
-        }
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+        <title>Vanilla Gadgets - 原生HTML+CSS+JS小工具集合</title>
 
-        .card>a:hover {
-            color: skyblue;
-        }
-    </style>
-</head>
+        <style>
+            :root {
+                --primary-color: #4a6fa5;
+                --secondary-color: #6b8cbc;
+                --accent-color: #ff6b6b;
+                --background-color: #f9f9f9;
+                --card-background: #ffffff;
+                --text-color: #333333;
+                --text-light: #666666;
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                --border-radius: 12px;
+                --transition: all 0.3s ease;
+            }
 
-<body>
-    <h1>原生 HTML+CSS+JS 的小玩意儿</h1>
-    <div class="cards">
-        <div class="card">
-            <a href="./heart/index.html">爱心跳动 / Heart</a>
-        </div>
-        <div class="card">
-            <a href="./stopwatch-game/index.html">掐秒表 / Stopwatch Game</a>
-        </div>
-        <div class="card">
-            <a href="./hen-egg/index.html">快乐母鸡 / Hen & Egg</a>
-        </div>
-    </div>
-</body>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    BlinkMacSystemFont,
+                    "Segoe UI",
+                    Roboto,
+                    Oxygen,
+                    Ubuntu,
+                    Cantarell,
+                    "Open Sans",
+                    "Helvetica Neue",
+                    sans-serif;
+                line-height: 1.6;
+                color: var(--text-color);
+                background-color: var(--background-color);
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+                min-height: 100vh;
+            }
+
+            header {
+                text-align: center;
+                padding: 3rem 1rem;
+                margin-bottom: 2rem;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+                font-weight: 800;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+                color: var(--text-light);
+                max-width: 700px;
+                margin: 0 auto;
+                margin-bottom: 1.5rem;
+            }
+
+            .intro {
+                font-size: 1.1rem;
+                max-width: 800px;
+                margin: 0 auto 3rem auto;
+                text-align: center;
+                color: var(--text-light);
+                padding: 0 1rem;
+            }
+
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+
+            .project-card {
+                background: var(--card-background);
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                text-decoration: none;
+                color: inherit;
+                display: block;
+                height: 100%;
+            }
+
+            .project-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            }
+
+            .project-image {
+                width: 100%;
+                height: 180px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 3rem;
+            }
+
+            .project-content {
+                padding: 1.5rem;
+            }
+
+            .project-title {
+                font-size: 1.5rem;
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+            }
+
+            .project-description {
+                color: var(--text-light);
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                line-height: 1.5;
+            }
+
+            .project-tech {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .tech-tag {
+                background-color: #eef2ff;
+                color: var(--primary-color);
+                padding: 0.3rem 0.8rem;
+                border-radius: 20px;
+                font-size: 0.85rem;
+                font-weight: 500;
+            }
+
+            footer {
+                text-align: center;
+                padding: 2rem;
+                margin-top: 2rem;
+                color: var(--text-light);
+                border-top: 1px solid #e0e0e0;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .footer-links a {
+                color: var(--primary-color);
+                text-decoration: none;
+                transition: var(--transition);
+            }
+
+            .footer-links a:hover {
+                color: var(--accent-color);
+                text-decoration: underline;
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2.2rem;
+                }
+
+                .tagline {
+                    font-size: 1.1rem;
+                }
+
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                body {
+                    padding: 15px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Vanilla Gadgets</h1>
+            <p class="tagline">纯粹、简单、有趣的原生Web小工具集合</p>
+            <p class="intro">
+                这是一个完全使用原生HTML、CSS和JavaScript构建的小工具集合。
+                没有框架，没有依赖，只有最纯粹的Web技术。每个项目都展示了原生Web开发的乐趣和可能性。
+            </p>
+        </header>
+
+        <main>
+            <div class="projects-grid">
+                <a href="./heart/index.html" class="project-card">
+                    <div
+                        class="project-image"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #ff6b6b,
+                                #ff8e8e
+                            );
+                        "
+                    >
+                        ❤️
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">爱心跳动 / Heart</h2>
+                        <p class="project-description">
+                            一个跳动的心脏动画，使用纯CSS实现。简单的几何形状和关键帧动画，带来生动的视觉效果。
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Animation</span>
+                            <span class="tech-tag">纯前端</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./stopwatch-game/index.html" class="project-card">
+                    <div
+                        class="project-image"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #4a6fa5,
+                                #6b8cbc
+                            );
+                        "
+                    >
+                        ⏱️
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">掐秒表 / Stopwatch Game</h2>
+                        <p class="project-description">
+                            一个增强版掐秒表小游戏，精度达到0.1毫秒，包含评级系统和历史记录。测试你的反应时间！
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">游戏</span>
+                            <span class="tech-tag">高精度计时</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="./hen-egg/index.html" class="project-card">
+                    <div
+                        class="project-image"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #ffd166,
+                                #ffb347
+                            );
+                        "
+                    >
+                        🐔
+                    </div>
+                    <div class="project-content">
+                        <h2 class="project-title">快乐母鸡 / Hen & Egg</h2>
+                        <p class="project-description">
+                            一个互动模拟游戏，母鸡会随机移动并下蛋，点击蛋可以孵化出新的母鸡。看看你能孵化多少只！
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">交互</span>
+                            <span class="tech-tag">模拟</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                cup113 &copy; <span id="current-year">2024</span> -
+                纯粹的原生Web项目集合
+            </p>
+            <div class="footer-links">
+                <a
+                    href="https://github.com/cup113/vanilla-gadgets"
+                    target="_blank"
+                    >GitHub 开源网址</a
+                >
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem">
+                所有项目均使用纯HTML、CSS和JavaScript构建，无任何外部依赖。
+            </p>
+        </footer>
+
+        <script>
+            // 设置当前年份
+            document.getElementById("current-year").textContent =
+                new Date().getFullYear();
+
+            // 为卡片添加简单的点击反馈
+            document.querySelectorAll(".project-card").forEach((card) => {
+                card.addEventListener("click", function () {
+                    this.style.opacity = "0.9";
+                    setTimeout(() => {
+                        this.style.opacity = "1";
+                    }, 150);
+                });
+            });
+        </script>
+    </body>
 </html>
